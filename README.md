@@ -1,4 +1,4 @@
-# KAIRO — Cyberpunk Portfolio
+# Nguyễn Minh Nhật — Cyberpunk DevOps Portfolio
 
 Mẫu portfolio một trang mang phong cách cyberpunk, được xây dựng bằng HTML, CSS và
 JavaScript thuần.
