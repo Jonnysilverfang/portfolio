@@ -4,11 +4,13 @@
   --surface: #11151b;
   --surface-soft: #171c24;
   --text: #f2f5f0;
-  --muted: #99a2a4;
+  --muted: #b3bdbe;
   --cyan: #00f0ff;
   --cyan-soft: rgba(0, 240, 255, 0.14);
   --pink: #ff2bd6;
   --acid: #bcff2f;
+  --cyber-yellow: #fcee09;
+  --cyber-red: #ff174f;
   --border: rgba(186, 205, 208, 0.24);
   --border-strong: rgba(0, 240, 255, 0.48);
   --display: "Orbitron", sans-serif;
@@ -141,7 +143,7 @@ button {
   align-items: center;
   gap: 12px;
   font-family: var(--display);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.08em;
 }
@@ -170,8 +172,8 @@ button {
 .desktop-nav a {
   position: relative;
   padding-block: 28px;
-  color: #b3babc;
-  font-size: 11px;
+  color: #c3cbcc;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.08em;
   transition: color 180ms ease;
@@ -212,7 +214,7 @@ button {
   align-items: center;
   gap: 9px;
   color: var(--acid);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.12em;
 }
 
@@ -267,7 +269,8 @@ button {
   padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
   color: var(--cyan);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.15em;
 }
 
@@ -324,7 +327,7 @@ button {
 .title-index {
   padding-top: 3px;
   color: var(--pink);
-  font-size: 11px;
+  font-size: 13px;
 }
 
 .accent-dot {
@@ -333,16 +336,113 @@ button {
 }
 
 .hero-intro {
-  max-width: 580px;
+  position: relative;
+  max-width: 640px;
   margin: 38px 0 32px 2px;
-  padding-left: 20px;
-  border-left: 2px solid var(--pink);
-  color: #adb6b8;
-  font-size: 14px;
-  line-height: 1.8;
+  overflow: hidden;
+  padding: 18px 26px 27px 30px;
+  border-left: 6px solid var(--cyber-yellow);
+  color: #e4e7e4;
+  background:
+    linear-gradient(90deg, rgba(252, 238, 9, 0.075), transparent 42%),
+    repeating-linear-gradient(0deg, transparent 0 9px, rgba(255, 255, 255, 0.015) 10px),
+    #0d1013;
+  box-shadow:
+    inset 0 1px rgba(252, 238, 9, 0.75),
+    inset -1px 0 rgba(0, 240, 255, 0.35),
+    0 18px 48px rgba(0, 0, 0, 0.32);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 26px) 0,
+    100% 26px,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%
+  );
+  line-height: 1.7;
 }
 
-.hero-intro em,
+.hero-intro::before {
+  position: absolute;
+  right: 20px;
+  bottom: 0;
+  width: 128px;
+  height: 8px;
+  content: "";
+  background: repeating-linear-gradient(
+    135deg,
+    var(--cyber-yellow) 0 7px,
+    transparent 7px 12px
+  );
+  opacity: 0.82;
+}
+
+.hero-intro::after {
+  position: absolute;
+  top: 18px;
+  right: -6px;
+  width: 42px;
+  height: 3px;
+  content: "";
+  background: var(--cyber-red);
+  box-shadow: -8px 6px 0 var(--cyber-red);
+  transform: skewX(-28deg);
+}
+
+.hero-intro-status {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(252, 238, 9, 0.28);
+  color: var(--cyber-yellow);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  line-height: 1;
+}
+
+.hero-intro-name,
+.hero-intro-detail {
+  display: block;
+}
+
+.hero-intro-name {
+  margin-bottom: 13px;
+  color: var(--text);
+  font-family: var(--display);
+  font-size: clamp(1.35rem, 2vw, 1.65rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.5;
+}
+
+.hero-intro-name em {
+  display: inline;
+  padding: 3px 9px 4px;
+  color: #080a0c;
+  background: var(--cyber-yellow);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 0 100%);
+  font-style: normal;
+  font-weight: 800;
+  text-shadow: none;
+}
+
+.hero-intro-detail {
+  font-size: 17px;
+}
+
+.hero-intro-detail strong {
+  color: var(--cyber-yellow);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 23, 79, 0.7);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
 .about-lead em {
   color: var(--text);
   font-style: normal;
@@ -362,7 +462,7 @@ button {
   gap: 22px;
   padding: 0 22px;
   font-family: var(--display);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
   clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
@@ -373,7 +473,6 @@ button {
 }
 
 .button svg,
-.contact-email svg,
 .back-to-top svg {
   width: 20px;
   fill: none;
@@ -398,7 +497,8 @@ button {
   display: inline-flex;
   align-items: center;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   transition: color 180ms ease;
 }
@@ -478,7 +578,7 @@ button {
   display: flex;
   justify-content: space-between;
   color: var(--cyan);
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.12em;
 }
 
@@ -488,7 +588,7 @@ button {
 
 .visual-meta-bottom {
   bottom: 27px;
-  color: #8d999b;
+  color: #adb7b9;
 }
 
 .cyber-core {
@@ -602,7 +702,7 @@ button {
   color: var(--text);
   background: rgba(6, 7, 10, 0.88);
   font-family: var(--display);
-  font-size: 9px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
   line-height: 1.45;
@@ -623,8 +723,8 @@ button {
   display: flex;
   align-items: center;
   gap: 14px;
-  color: #657073;
-  font-size: 8px;
+  color: #899496;
+  font-size: 10px;
   letter-spacing: 0.18em;
   writing-mode: vertical-rl;
 }
@@ -656,9 +756,9 @@ button {
 }
 
 .ticker span {
-  color: #a5afb1;
+  color: #c0c8c9;
   font-family: var(--display);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
 }
@@ -688,7 +788,7 @@ button {
   display: inline-block;
   margin-bottom: 18px;
   color: var(--cyan);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.16em;
 }
@@ -716,7 +816,8 @@ button {
   padding-left: 18px;
   border-left: 1px solid var(--pink);
   color: var(--muted);
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.7;
 }
 
 .filter-bar {
@@ -729,10 +830,11 @@ button {
   min-height: 44px;
   padding: 0 16px;
   border: 1px solid var(--border);
-  color: #7f898b;
+  color: #aeb8ba;
   background: transparent;
   cursor: pointer;
-  font-size: 9px;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.1em;
   transition:
     color 180ms ease,
@@ -801,8 +903,8 @@ button {
   z-index: 5;
   right: 16px;
   bottom: 12px;
-  color: rgba(242, 245, 240, 0.54);
-  font-size: 8px;
+  color: rgba(242, 245, 240, 0.72);
+  font-size: 10px;
   letter-spacing: 0.14em;
 }
 
@@ -981,7 +1083,7 @@ button {
   top: 18px;
   left: 18px;
   color: var(--acid);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.1em;
 }
 
@@ -1001,7 +1103,7 @@ button {
   padding: 16px;
   border: 1px solid rgba(242, 245, 240, 0.18);
   color: var(--muted);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .commerce-panel strong {
@@ -1071,20 +1173,21 @@ button {
   display: block;
   margin-bottom: 4px;
   color: var(--cyan);
-  font-size: 8px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.12em;
 }
 
 .project-info h3 {
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(1.05rem, 2vw, 1.45rem);
+  font-size: clamp(1.2rem, 2vw, 1.7rem);
   letter-spacing: -0.025em;
 }
 
 .project-type {
-  color: #778184;
-  font-size: 8px;
+  color: #a5afb1;
+  font-size: 10px;
   line-height: 1.5;
   text-align: right;
 }
@@ -1123,13 +1226,14 @@ button {
 
 .about-copy p {
   color: var(--muted);
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 .about-copy .about-lead {
   margin-top: 0;
   color: #cbd1d2;
-  font-size: 17px;
+  font-size: 20px;
   line-height: 1.65;
 }
 
@@ -1149,7 +1253,7 @@ button {
 
 .profile-module {
   grid-row: span 2;
-  padding: 18px;
+  padding: 24px;
 }
 
 .profile-screen {
@@ -1208,30 +1312,54 @@ button {
   bottom: 12px;
   left: 12px;
   color: var(--cyan);
-  font-size: 8px;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.12em;
 }
 
 .profile-data {
   display: grid;
-  padding-top: 18px;
-  grid-template-columns: 1fr auto;
-  gap: 8px 20px;
-  color: #697477;
-  font-size: 8px;
+  gap: 0;
+  margin: 20px 0 0;
+  padding: 0;
   letter-spacing: 0.08em;
 }
 
-.profile-data strong {
-  color: #b9c1c2;
-  font-weight: 500;
+.profile-data > div {
+  display: grid;
+  padding: 16px 0;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid rgba(186, 205, 208, 0.12);
+  text-align: center;
+}
+
+.profile-data > div:last-child {
+  border-bottom: 0;
+}
+
+.profile-data dt {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.profile-data dd {
+  margin: 0;
+  color: #e0e5e4;
+  font-family: var(--display);
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .module-label {
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
   color: var(--cyan);
-  font-size: 8px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.15em;
 }
 
@@ -1256,12 +1384,12 @@ button {
 
 .skill-row span {
   color: var(--pink);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .skill-row strong {
   font-family: var(--display);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 
@@ -1271,7 +1399,8 @@ button {
   align-items: center;
   gap: 8px;
   color: var(--acid);
-  font-size: 8px;
+  font-size: 10px;
+  font-weight: 600;
   letter-spacing: 0.12em;
 }
 
@@ -1299,7 +1428,8 @@ button {
   border: 1px solid rgba(188, 255, 47, 0.25);
   color: #c5cfb4;
   background: rgba(188, 255, 47, 0.035);
-  font-size: 8px;
+  font-size: 10px;
+  font-weight: 500;
   letter-spacing: 0.1em;
 }
 
@@ -1308,8 +1438,8 @@ button {
   justify-content: space-between;
   padding: 13px 16px;
   border-top: 1px solid var(--border);
-  color: #606a6d;
-  font-size: 8px;
+  color: #929d9f;
+  font-size: 10px;
 }
 
 .status-online {
@@ -1349,8 +1479,9 @@ button {
 
 .contact-inner > p {
   margin: 8px 0 20px;
-  color: #899496;
-  font-size: 10px;
+  color: #b8c1c2;
+  font-size: 12px;
+  font-weight: 600;
   letter-spacing: 0.17em;
 }
 
@@ -1363,53 +1494,61 @@ button {
   line-height: 0.82;
 }
 
-.contact-email {
-  display: flex;
-  min-height: 56px;
-  align-items: center;
-  gap: 46px;
+.contact-links {
+  display: grid;
+  width: min(100%, 620px);
+  grid-template-columns: repeat(5, minmax(88px, 1fr));
+  justify-content: center;
+  gap: 14px;
   margin-top: 50px;
-  padding: 0 26px;
-  border: 1px solid var(--cyan);
-  color: var(--cyan);
-  background: rgba(0, 240, 255, 0.025);
-  font-family: var(--display);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+}
+
+.contact-method {
+  display: flex;
+  min-width: 0;
+  min-height: 104px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid var(--border);
+  color: #c4cdce;
+  background: rgba(9, 13, 17, 0.72);
+  touch-action: manipulation;
   transition:
     color 220ms ease,
+    border-color 220ms ease,
     background 220ms ease,
     box-shadow 220ms ease;
 }
 
-.contact-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 50px;
+.contact-method svg {
+  width: 30px;
+  height: 30px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
 }
 
-.contact-links .contact-email {
-  margin-top: 0;
+.contact-method .brand-icon {
+  fill: currentColor;
+  stroke: none;
 }
 
-.contact-phone {
-  border-color: var(--pink);
-  color: var(--pink);
-  background: rgba(255, 43, 214, 0.025);
+.contact-method span {
+  font-family: var(--display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
 }
 
-.contact-email:hover {
-  color: var(--bg);
-  background: var(--cyan);
-  box-shadow: 0 0 32px rgba(0, 240, 255, 0.22);
-}
-
-.contact-phone:hover {
-  background: var(--pink);
-  box-shadow: 0 0 32px rgba(255, 43, 214, 0.22);
+.contact-method:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-soft);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.14);
 }
 
 .contact-orbit {
@@ -1440,9 +1579,9 @@ button {
   gap: 40px;
   padding: 24px max(24px, calc((100vw - var(--container)) / 2));
   border-top: 1px solid var(--border);
-  color: #687275;
+  color: #9aa5a7;
   background: #050609;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.1em;
 }
 
@@ -1458,18 +1597,42 @@ button {
 
 .social-links {
   display: flex;
-  gap: 26px;
+  gap: 8px;
 }
 
 .social-links a {
-  display: inline-flex;
-  min-height: 44px;
+  display: grid;
+  width: 44px;
+  height: 44px;
   align-items: center;
-  transition: color 180ms ease;
+  justify-content: center;
+  border: 1px solid var(--border);
+  touch-action: manipulation;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.social-links svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.social-links .brand-icon {
+  fill: currentColor;
+  stroke: none;
 }
 
 .social-links a:hover {
+  border-color: var(--cyan);
   color: var(--cyan);
+  background: var(--cyan-soft);
 }
 
 .back-to-top {
@@ -1503,7 +1666,7 @@ button {
   border: 1px solid var(--acid);
   color: var(--acid);
   background: rgba(6, 7, 10, 0.94);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.11em;
   opacity: 0;
   pointer-events: none;
@@ -1664,13 +1827,13 @@ button {
   .mobile-menu a span {
     color: var(--cyan);
     font-family: var(--mono);
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .mobile-menu p {
     margin-top: 26px;
     color: var(--acid);
-    font-size: 9px;
+    font-size: 11px;
     letter-spacing: 0.12em;
   }
 
@@ -1779,6 +1942,11 @@ button {
 
   .hero-intro {
     margin-top: 28px;
+    padding: 20px 20px 22px;
+  }
+
+  .hero-intro-detail {
+    font-size: 16px;
   }
 
   .hero-actions {
@@ -1861,31 +2029,30 @@ button {
   }
 
   .commerce-panel strong {
-    font-size: 11px;
+    font-size: 13px;
   }
 
   .contact {
-    min-height: 560px;
+    min-height: 680px;
   }
 
   .contact h2 {
     font-size: clamp(3.2rem, 17vw, 5.6rem);
   }
 
-  .contact-email {
-    width: 100%;
-    max-width: 330px;
-    justify-content: space-between;
-    gap: 14px;
-    padding: 0 18px;
-    font-size: 10px;
-  }
-
   .contact-links {
     width: 100%;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 42px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .contact-method {
+    min-height: 96px;
+  }
+
+  .contact-method svg {
+    width: 26px;
+    height: 26px;
   }
 
   .site-footer {
@@ -1896,7 +2063,7 @@ button {
 
   .social-links {
     flex-wrap: wrap;
-    gap: 8px 18px;
+    gap: 8px;
   }
 }
 
