@@ -5,14 +5,10 @@ const mobileLinks = document.querySelectorAll("[data-mobile-link]");
 const navLinks = document.querySelectorAll("[data-nav-link]");
 const sections = document.querySelectorAll("[data-section]");
 const revealItems = document.querySelectorAll(".reveal");
-const filterButtons = document.querySelectorAll("[data-filter]");
-const projects = document.querySelectorAll("[data-project]");
-const toast = document.querySelector("[data-toast]");
-const backToTop = document.querySelector("[data-back-to-top]");
 
 const setMenuState = (isOpen) => {
   menuToggle.setAttribute("aria-expanded", String(isOpen));
-  menuToggle.setAttribute("aria-label", isOpen ? "Đóng menu" : "Mở menu");
+  menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
   mobileMenu.classList.toggle("is-open", isOpen);
   document.body.classList.toggle("menu-open", isOpen);
 };
@@ -21,18 +17,13 @@ menuToggle.addEventListener("click", () => {
   setMenuState(menuToggle.getAttribute("aria-expanded") !== "true");
 });
 
-mobileLinks.forEach((link) => {
-  link.addEventListener("click", () => setMenuState(false));
-});
+mobileLinks.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") setMenuState(false);
 });
 
-const updateHeader = () => {
-  header.classList.toggle("is-scrolled", window.scrollY > 24);
-};
-
+const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 20);
 updateHeader();
 window.addEventListener("scroll", updateHeader, { passive: true });
 
@@ -55,10 +46,7 @@ if ("IntersectionObserver" in window) {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         navLinks.forEach((link) => {
-          link.classList.toggle(
-            "is-active",
-            link.getAttribute("href") === `#${entry.target.id}`,
-          );
+          link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`);
         });
       });
     },
@@ -70,32 +58,8 @@ if ("IntersectionObserver" in window) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 }
 
-let toastTimer;
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const selectedFilter = button.dataset.filter;
-
-    filterButtons.forEach((item) => {
-      item.classList.toggle("is-active", item === button);
-    });
-
-    projects.forEach((project) => {
-      const isMatch =
-        selectedFilter === "all" || project.dataset.category === selectedFilter;
-      project.classList.toggle("is-hidden", !isMatch);
-    });
-
-    toast.textContent =
-      selectedFilter === "all"
-        ? "SHOWING ALL MISSIONS"
-        : `FILTER: ${selectedFilter.toUpperCase()}`;
-    toast.classList.add("is-visible");
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2400);
-  });
-});
-
-backToTop.addEventListener("click", () => {
+document.querySelector("[data-back-to-top]").addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 });
+
+document.querySelector("[data-year]").textContent = new Date().getFullYear();
